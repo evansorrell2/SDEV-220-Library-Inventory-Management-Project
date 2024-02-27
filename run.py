@@ -1,6 +1,6 @@
 #Application startup script
-from source import app, db
-from source.models import Book, Video, Game, User, BorrowRecord, Review  # make sure to import models before creating shell context
+from app import app, db
+from app.models import Book, Video, Game, User, BorrowRecord, Review  # make sure to import models before creating shell context
 
 # Create shell context
 @app.shell_context_processor

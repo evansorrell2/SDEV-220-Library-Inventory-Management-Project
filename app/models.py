@@ -1,5 +1,5 @@
 from datetime import datetime
-from source import db
+from app import db
 
 class TimestampMixin(object):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

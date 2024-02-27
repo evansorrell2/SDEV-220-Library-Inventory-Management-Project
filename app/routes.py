@@ -1,5 +1,5 @@
 #Routing and view functions
-from source import app
+from app import app
 
 
 @app.route('/')

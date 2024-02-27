@@ -1,6 +1,6 @@
 #add data to database
-from source import db, app
-from source.models import  Video, Game
+from app import db, app
+from app.models import  Video, Game
 
 def add_video_and_game_data():
     # create video data
