@@ -3,12 +3,9 @@ from django.contrib.contenttypes.models import ContentType
 from .models import BorrowRecord
 
 class BorrowRecordForm(forms.ModelForm):
-    content_type = forms.ModelChoiceField(queryset=ContentType.objects.all())
-    object_id = forms.IntegerField()
-    item = forms.ModelChoiceField(queryset=ContentType.objects.none())
     class Meta:
         model = BorrowRecord
-        fields = ['borrower', 'borrow_date', 'return_date']
+        fields = ['content_type', 'object_id', 'borrower', 'borrow_date', 'return_date']
         widgets = {
             'borrow_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
             'return_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),

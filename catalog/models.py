@@ -3,28 +3,39 @@ from django.conf import settings
 from django.utils import timezone
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ValidationError
 
 class Item(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField(default="No description available.")  # Set a default at the base class level
+    title = models.CharField(max_length=200, help_text="Enter the title of the item")
+    description = models.TextField(help_text="Enter the description of the item", default="No description available.")  # Set a default at the base class level
     class Meta:
         abstract = True
 
 class Book(Item):
-    author = models.CharField(max_length=100)
-    publisher = models.CharField(max_length=100)
+    author = models.CharField(max_length=100, help_text="Enter the author's name")
+    publisher = models.CharField(max_length=100, help_text="Enter the publisher's name")
     book_type = models.CharField(max_length=100, help_text="Enter the book category (e.g., Fiction, Non-Fiction, Science, etc.)", default="General")
 
+    def __str__(self):
+        return self.title
 class Video(Item):
-    director = models.CharField(max_length=100)
+    director = models.CharField(max_length=100, help_text="Enter the director's name")
     release_year = models.IntegerField()
     video_type = models.CharField(max_length=100, help_text="Enter the video category (e.g., Movie, Documentary, Series, etc.)", default="General")
 
+    def clean(self):
+        if self.release_year < 1900 or self.release_year > timezone.now().year:
+            raise ValidationError("Release year must be between 1900 and the current year.")
+    def __str__(self):
+        return self.title
+
 class Game(Item):
-    platform = models.CharField(max_length=100)
-    genre = models.CharField(max_length=100) 
+    platform = models.CharField(max_length=100, help_text="Enter the platform of the game(e.g., PC, PS4, etc.)")
+    genre = models.CharField(max_length=100, help_text="Enter the genre of the game") 
     game_type = models.CharField(max_length=100, help_text="Enter the game category (e.g., Action, Sports, etc.)", default="General")
 
+    def __str__(self):
+        return self.title
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     phone = models.CharField(max_length=20, blank=True, null=True, help_text="Enter phone number")

@@ -15,9 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from catalog.views import SignUpView
+from catalog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/', SignUpView.as_view(), name='signup')
+    path('catalog/', views.index, name='index'),
+    path('items/', views.ItemListView, name='item-list'),
+    path('books/', views.BookListView.as_view(), name='book-list'),
+    path('books/<int:pk>/', views.BookDetailView.as_view(), name='book-detail'),
+    path('videos/', views.VideoListView.as_view(), name='video-list'),
+    path('videos/<int:pk>/', views.VideoDetailView.as_view(), name='video-detail'),
+    path('games/', views.GameListView.as_view(), name='game-list'),
+    path('games/<int:pk>/', views.GameDetailView.as_view(), name='game-detail'),
 ]
