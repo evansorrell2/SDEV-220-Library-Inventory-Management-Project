@@ -158,8 +158,6 @@ def update_item_attribute(item):
     item.publisher = input("Enter the new publisher: ")
         
     if isinstance(item, comic):
-        item.author = input("Enter the new author: ")
-        item.publisher = input("Enter the new publisher: ")
         item.artist = input("Enter the new artist: ")
     else:
         print(f"Update operation for {type(item).__name__} not supported.")
