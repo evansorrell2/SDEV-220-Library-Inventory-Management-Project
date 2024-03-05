@@ -103,8 +103,13 @@ def remove_item(inventory):
 
     item_id, _ = find_item_by_id_or_title(inventory)
     if item_id and item_id in inventory:
-        del inventory[item_id]
-        print(f"Item {item_id} removed successfully.")
+        decision = input(f"Are you sure you want to remove item {item_id}? (y/n): ")
+        if decision.lower() == 'y':
+            del inventory[item_id]
+            print(f"Item {item_id} removed successfully.")
+        else:
+            print("Item removal cancelled.")
+            return
                 
 
 
