@@ -41,7 +41,8 @@ def print_inventory(inventory):
     for item_id, item in inventory.items():
         print(f"{item_id}: {item}")
 
-def save_inventory(inventory, filename='inventory.json'):
+def save_inventory(inventory):
+    filename='inventory.json'
     with open(filename, 'w') as file:
         file.write(jsonpickle.encode(inventory))
 
