@@ -1,5 +1,4 @@
-import json
-from datetime import datetime
+
 
 class item:
     def __init__(self, title, genre, releaseDate):
@@ -19,9 +18,6 @@ class item:
     def getReleaseDate(self):
         return self.releaseDate
     
-
-
-
     
 class book(item):
     def __init__(self, title, genre, releaseDate, author, publisher):
@@ -45,6 +41,7 @@ class comic(book):
     def getArtist(self):
         return self.artist
     
+'''
 class movie(item):
     def __init__(self, title, genre, releaseDate, runtime, maturityRating, qualityRating, cast, director, producer):
         super().__init__(title, genre, releaseDate)
@@ -129,3 +126,5 @@ class boardGame(game):
         return self.designer
     def getArtist(self):
         return self.artist
+
+'''
