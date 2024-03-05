@@ -24,6 +24,8 @@ import json
 import jsonpickle
 from models import book, comic
 import os
+import tkinter as tk
+from tkinter import simpledialog, messagebox
 
 #####-------------Bo's Work-------------#####
 def load_inventory():
@@ -37,185 +39,258 @@ def load_inventory():
         with open(filename) as file:
             return jsonpickle.decode(file.read())
         
-def print_inventory(inventory):
-    for item_id, item in inventory.items():
-        print(f"{item_id}: {item}")
+# def print_inventory(inventory):
+#     for item_id, item in inventory.items():
+#         print(f"{item_id}: {item}")
 
-def save_inventory(inventory):
-    filename='inventory.json'
-    with open(filename, 'w') as file:
-        file.write(jsonpickle.encode(inventory))
+# def save_inventory(inventory):
+#     filename='inventory.json'
+#     with open(filename, 'w') as file:
+#         file.write(jsonpickle.encode(inventory))
 
 
-def get_date_input():
-    while True:
-        dateInput = input("Enter the release date (YYYY-MM-DD): ")
-        try:
-            return datetime.strptime(dateInput, '%Y-%m-%d').strftime("%Y-%m-%d")
-        except ValueError as e:
-            print("Invalid date format. Please try again using YYYY-MM-DD.")
+# def get_date_input():
+#     while True:
+#         dateInput = input("Enter the release date (YYYY-MM-DD): ")
+#         try:
+#             return datetime.strptime(dateInput, '%Y-%m-%d').strftime("%Y-%m-%d")
+#         except ValueError as e:
+#             print("Invalid date format. Please try again using YYYY-MM-DD.")
 
-def create_item():
-    while True:
-        print("Choose the type of item to create:")
-        print("1. Book\n2. Comic \n3. Quit")
-        choice = input("Enter your choice: ")
-        if choice == '3':
-            print("Exiting item creation.")
-            return None
+# def create_item():
+#     while True:
+#         print("Choose the type of item to create:")
+#         print("1. Book\n2. Comic \n3. Quit")
+#         choice = input("Enter your choice: ")
+#         if choice == '3':
+#             print("Exiting item creation.")
+#             return None
         
-        title = input("Enter the title: ")
-        genre = input("Enter the genre: ")
-        releaseDate = get_date_input()
+#         title = input("Enter the title: ")
+#         genre = input("Enter the genre: ")
+#         releaseDate = get_date_input()
 
-        if choice == '1'or choice == '2':
-            author = input("Enter the author: ")
-            publisher = input("Enter the publisher: ")
-            if choice == '1':
-                return book(title, genre, releaseDate, author, publisher)
-            elif choice == '2':
-                artist = input("Enter the artist: ")
-                return comic(title, genre, releaseDate, author, publisher, artist)
-        else:
-            print("Invalid choice. Please try again.")
-            continue
+#         if choice == '1'or choice == '2':
+#             author = input("Enter the author: ")
+#             publisher = input("Enter the publisher: ")
+#             if choice == '1':
+#                 return book(title, genre, releaseDate, author, publisher)
+#             elif choice == '2':
+#                 artist = input("Enter the artist: ")
+#                 return comic(title, genre, releaseDate, author, publisher, artist)
+#         else:
+#             print("Invalid choice. Please try again.")
+#             continue
 
-def add_item(inventory):
-    item = create_item()
-    if item:
-        if inventory:
-            # if the inventory is not empty, get the maximum ID
-            max_id = max(map(int, inventory.keys()))
-            item_id = max_id + 1
-        else:
-            # if the inventory is empty, start with ID 1
-            item_id = 1
-        inventory[str(item_id)] = item 
-        print(f"Item '{item.title}' added successfully with ID {item_id}.")
-    else:
-        print("Item creation cancelled.")
+# def add_item(inventory):
+#     item = create_item()
+#     if item:
+#         if inventory:
+#             # if the inventory is not empty, get the maximum ID
+#             max_id = max(map(int, inventory.keys()))
+#             item_id = max_id + 1
+#         else:
+#             # if the inventory is empty, start with ID 1
+#             item_id = 1
+#         inventory[str(item_id)] = item 
+#         print(f"Item '{item.title}' added successfully with ID {item_id}.")
+#     else:
+#         print("Item creation cancelled.")
 
 
-def remove_item(inventory):
-    if not inventory:
-        print("Inventory is empty.")
-        return
+# def remove_item(inventory):
+#     if not inventory:
+#         print("Inventory is empty.")
+#         return
 
-    item_id, _ = find_item_by_id_or_title(inventory)
-    if item_id and item_id in inventory:
-        decision = input(f"Are you sure you want to remove item {item_id}? (y/n): ")
-        if decision.lower() == 'y':
-            del inventory[item_id]
-            print(f"Item {item_id} removed successfully.")
-        else:
-            print("Item removal cancelled.")
-            return
+#     item_id, _ = find_item_by_id_or_title(inventory)
+#     if item_id and item_id in inventory:
+#         decision = input(f"Are you sure you want to remove item {item_id}? (y/n): ")
+#         if decision.lower() == 'y':
+#             del inventory[item_id]
+#             print(f"Item {item_id} removed successfully.")
+#         else:
+#             print("Item removal cancelled.")
+#             return
                 
 
 
-def update_item(inventory):
-    if not inventory:
-        print("Inventory is empty.")
-        return
+# def update_item(inventory):
+#     if not inventory:
+#         print("Inventory is empty.")
+#         return
     
-    item_id, item = find_item_by_id_or_title(inventory)
-    if item:
-        update_item_attribute(item)
-        print(f"Item {item_id} updated successfully.")
+#     item_id, item = find_item_by_id_or_title(inventory)
+#     if item:
+#         update_item_attribute(item)
+#         print(f"Item {item_id} updated successfully.")
 
 
-def find_item_by_id_or_title(inventory):
-    identifier = input("Enter the ID or title of the item to search: ")
-    if identifier in inventory:
-        return identifier, inventory[identifier]
+# def find_item_by_id_or_title(inventory):
+#     identifier = input("Enter the ID or title of the item to search: ")
+#     if identifier in inventory:
+#         return identifier, inventory[identifier]
     
-    results = search_item(inventory, identifier)
-    if not results:
-        print("Item not found.")
-        return None, None
+#     results = search_item(inventory, identifier)
+#     if not results:
+#         print("Item not found.")
+#         return None, None
     
-    if len(results) == 1:
-        return results[0]
+#     if len(results) == 1:
+#         return results[0]
     
-    for index, item in enumerate(results):
-        print(f"{index+1}. ID: {item[0]}, Title: {item[1].title}")
+#     for index, item in enumerate(results):
+#         print(f"{index+1}. ID: {item[0]}, Title: {item[1].title}")
 
-    while True:
-        choice = input("Enter the number of the item: ")
-        if choice.isdigit() and 1 <= int(choice) <= len(results):
-            return results[int(choice) - 1]
-        else:
-            print("Invalid choice. Please enter a valid number.")
-
-
-def search_item(inventory, search_term):
-    results = []
-    for item_id, item in inventory.items():
-        if search_term.lower() in item.title.lower():
-            results.append((item_id, item))
-    return None if not results else results
+#     while True:
+#         choice = input("Enter the number of the item: ")
+#         if choice.isdigit() and 1 <= int(choice) <= len(results):
+#             return results[int(choice) - 1]
+#         else:
+#             print("Invalid choice. Please enter a valid number.")
 
 
-def update_item_attribute(item):
-    item.title = input("Enter the new title: ")
-    item.genre = input("Enter the new genre: ")
-    item.releaseDate = get_date_input()
-    item.author = input("Enter the new author: ")
-    item.publisher = input("Enter the new publisher: ")
+# def search_item(inventory, search_term):
+#     results = []
+#     for item_id, item in inventory.items():
+#         if search_term.lower() in item.title.lower():
+#             results.append((item_id, item))
+#     return None if not results else results
+
+
+# def update_item_attribute(item):
+#     item.title = input("Enter the new title: ")
+#     item.genre = input("Enter the new genre: ")
+#     item.releaseDate = get_date_input()
+#     item.author = input("Enter the new author: ")
+#     item.publisher = input("Enter the new publisher: ")
         
-    if isinstance(item, comic):
-        item.artist = input("Enter the new artist: ")
-    else:
-        print(f"Update operation for {type(item).__name__} not supported.")
+#     if isinstance(item, comic):
+#         item.artist = input("Enter the new artist: ")
+#     else:
+#         print(f"Update operation for {type(item).__name__} not supported.")
 
-def display_item_details(item):
-    print("\nItem Details:")
-    print(f"Title: {item.title}")
-    print(f"Genre: {item.genre}")
-    print(f"Release Date: {item.releaseDate}")
-    if isinstance(item, book):
-        print(f"Author: {item.author}")
-        print(f"Publisher: {item.publisher}")
-        if isinstance(item, comic):
-            print(f"Artist: {item.artist}")
-    print("\n")
+# def display_item_details(item):
+#     print("\nItem Details:")
+#     print(f"Title: {item.title}")
+#     print(f"Genre: {item.genre}")
+#     print(f"Release Date: {item.releaseDate}")
+#     if isinstance(item, book):
+#         print(f"Author: {item.author}")
+#         print(f"Publisher: {item.publisher}")
+#         if isinstance(item, comic):
+#             print(f"Artist: {item.artist}")
+#     print("\n")
 
 
-def view_item_details(inventory):
-    item_id, item = find_item_by_id_or_title(inventory)
-    if item:
-        display_item_details(item)
-    else:
-        print("No item found with the given ID or title.")
+# def view_item_details(inventory):
+#     item_id, item = find_item_by_id_or_title(inventory)
+#     if item:
+#         display_item_details(item)
+#     else:
+#         print("No item found with the given ID or title.")
 
         
-def main():
+# def main():
+#     inventory = load_inventory()
+#     while True:
+#         print("\nInventory Management System")
+#         choice = input("1. Add Item\n2. Update Item \n3. Remove Item\n4. Save and Exit \n5. Print Inventory \n6. View Item Details \nEnter your choice: ")
+#         if choice == '1':
+#             add_item(inventory)
+#         elif choice == '2':
+#             update_item(inventory)
+#         elif choice == '3':
+#             remove_item(inventory)
+#         elif choice == '4':
+#             save_inventory(inventory)
+#             print("Inventory saved. Exiting program.")
+#             break
+#         elif choice == '5':
+#             print_inventory(inventory)
+#         elif choice == '6':
+#             view_item_details(inventory)
+#         else:
+#             print("Invalid choice.")
+
+
+# if __name__ == '__main__':
+#     main()
+
+def add_item_gui(inventory):
+    add_item_win = tk.TopLevel()
+    add_item_win.title("Add Item")
+
+    tk.Label(add_item_win, text="Title:").grid(row=0, column=0)
+    title_entry = tk.Entry(add_item_win)
+    title_entry.grid(row=0, column=1)
+
+    tk.Label(add_item_win, text="Genre:").grid(row=1, column=0)
+    genre_entry = tk.Entry(add_item_win)
+    genre_entry.grid(row=1, column=1)
+
+    tk.Label(add_item_win, text="Release Date (YYYY-MM-DD):").grid(row=2, column=0)
+    release_date_entry = tk.Entry(add_item_win)
+    release_date_entry.grid(row=2, column=1)
+
+    tk.Label(add_item_win, text="Author:").grid(row=3, column=0)
+    author_entry = tk.Entry(add_item_win)
+    author_entry.grid(row=3, column=1)
+
+    tk.Label(add_item_win, text="Publisher:").grid(row=4, column=0)
+    publisher_entry = tk.Entry(add_item_win)
+    publisher_entry.grid(row=4, column=1)
+
+    tk.Label(add_item_win, text="Artist:").grid(row=5, column=0)
+    artist_entry = tk.Entry(add_item_win)
+    artist_entry.grid(row=5, column=1)
+
+    def on_submit():
+        title = title_entry.get()
+        genre = genre_entry.get()
+        release_date = release_date_entry.get()
+
+        if not title or not genre or not release_date:
+            messagebox.showerror("Error", "Please fill in all fields.")
+            return
+        new_item = book(title, genre, release_date,"author","publisher")
+        item_id = str(len(inventory) + 1)
+        inventory[item_id] = new_item
+        messagebox.showinfo("Success", f"Item {item_id} added successfully.")
+        add_item_win.destroy()
+
+    submit_button = tk.Button(add_item_win, text="Submit", command=on_submit)
+    submit_button.grid(row=6, column=0, columnspan=2)
+
+    add_item_win.mainloop()
+
+
+def gui_view_item_details():
     inventory = load_inventory()
-    while True:
-        print("\nInventory Management System")
-        choice = input("1. Add Item\n2. Update Item \n3. Remove Item\n4. Save and Exit \n5. Print Inventory \n6. View Item Details \nEnter your choice: ")
-        if choice == '1':
-            add_item(inventory)
-        elif choice == '2':
-            update_item(inventory)
-        elif choice == '3':
-            remove_item(inventory)
-        elif choice == '4':
-            save_inventory(inventory)
-            print("Inventory saved. Exiting program.")
-            break
-        elif choice == '5':
-            print_inventory(inventory)
-        elif choice == '6':
-            view_item_details(inventory)
-        else:
-            print("Invalid choice.")
+    root = tk.Tk()
+    root.title("View Item Details")
 
+    # 创建一个内部函数来处理项目查找和显示逻辑
+    def view_details():
+        identifier = simpledialog.askstring("Search", "Enter the ID or title of the item:")
+
+        if identifier in inventory:
+            item = inventory[identifier]
+            details_message = f"Title: {item.title}\nGenre: {item.genre}\nRelease Date: {item.releaseDate}"
+            tk.messagebox.showinfo("Item Details", details_message)
+        else:
+            tk.messagebox.showerror("Error", "No item found with the given ID or title.")
+
+    view_button = tk.Button(root, text="View Item Details", command=view_details)
+    view_button.pack()
+
+    root.mainloop()
 
 if __name__ == '__main__':
-    main()
+    gui_view_item_details()
 
 
+    
 ########-----------Bo's Work end-----------########
     
 
