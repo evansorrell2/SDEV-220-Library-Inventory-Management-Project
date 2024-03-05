@@ -22,17 +22,110 @@
 from datetime import datetime
 import json
 import jsonpickle
+from models import * # Bo's work
+import uuid
+import os
 
+#####-------------Bo's Work-------------#####
+def load_inventory(filename='inventory.json'):
+    if not os.path.exists(filename):
+        with open(filename, 'w') as file:
+            print(f"{filename} not found. Creating a new inventory file.")
+            file.write(jsonpickle.encode({}))
+            return {}
+    else:
+        with open(filename) as file:
+            return jsonpickle.decode(file.read())
+        
+
+def save_inventory(inventory, filename='inventory.json'):
+    with open(filename, 'w') as file:
+        file.write(jsonpickle.encode(inventory))
+
+
+def get_date_input():
+    while True:
+        dateInput = input("Enter the release date (YYYY-MM-DD): ")
+        try:
+            return datetime.strptime(dateInput, '%Y-%m-%d').strftime("%Y-%m-%d")
+        except ValueError as e:
+            print("Invalid date format. Please try again using YYYY-MM-DD.")
+
+def create_item():
+    while True:
+        print("Choose the type of item to create:")
+        print("1. Book\n2. Comic \n3. Quit")
+        choice = input("Enter your choice: ")
+        if choice == '3':
+            print("Exiting item creation.")
+            return None
+        
+        title = input("Enter the title: ")
+        genre = input("Enter the genre: ")
+        releaseDate = get_date_input()
+
+        if choice == '1'or choice == '2':
+            author = input("Enter the author: ")
+            publisher = input("Enter the publisher: ")
+            if choice == '1':
+                return book(title, genre, releaseDate, author, publisher)
+            elif choice == '2':
+                artist = input("Enter the artist: ")
+                return comic(title, genre, releaseDate, author, publisher, artist)
+        else:
+            print("Invalid choice. Please try again.")
+            continue
+
+def add_item(inventory):
+    item = create_item(inventory)
+    if item:
+        item_id = str(uuid.uuid4())
+        inventory[item_id] = item
+        print(f"Item '{item.title}' added successfully with ID {item_id}.")
+    else:
+        print("Item creation cancelled.")
+
+def remove_item(inventory):
+    item_id = input("Enter the ID of the item to remove: ")
+    if item_id in inventory:
+        del inventory[item_id]
+        print(f"Item '{inventory[item_id].title}' removed successfully.")
+    else:
+        print("Item not found.")
+
+def update_item(inventory):
+    item_id = input("Enter the ID of the item to update: ")
+    if item_id in inventory:
+        item = inventory[item_id]
+        print(f"Updating item '{item.title}'...")
+
+def main():
+    inventory = load_inventory()
+    while True:
+        print("\nInventory Management System")
+        choice = input("1. Add Item\n2. Update Item\n3. Delete Item\n4. Save and Exit\nChoose an option: ")
+        if choice == '1':
+            add_item(inventory)
+        elif choice == '2':
+            update_item(inventory)
+        elif choice == '3':
+            remove_item(inventory)
+        elif choice == '4':
+            save_inventory(inventory)
+            print("Inventory saved. Exiting program.")
+            break
+        else:
+            print("Invalid choice.")
+
+
+########-----------Bo's Work end-----------########
 def createItem():
     date_format = '%Y-%m-%d'
     itemType = input("Enter the type of item you wish to enter:")
     if itemType == "Book":
         title = input("Enter the title of the book:")
         genre = input("Enter the genre of the book:")
-        year = input("Enter the year of the book's release:")
-        month = input("Enter the month of the book's release:")
-        day = input("Enter the day of the book's release:")
-        releaseDate = (datetime(int(year), int(month), int(day))).strftime("%x")
+        releaseDate = get_date_input()
         author = input("Enter the author of the book:")
         publisher = input("Enter the publisher of the book:")
         id = 0
@@ -45,10 +138,7 @@ def createItem():
     elif itemType == "Comic":
         title = input("Enter the title of the comic:")
         genre = input("Enter the genre of the comic:")
-        year = input("Enter the year of the comic's release:")
-        month = input("Enter the month of the comic's release:")
-        day = input("Enter the day of the comic's release:")
-        releaseDate = (datetime(int(year), int(month), int(day))).strftime("%x")
+        releaseDate = get_date_input()
         author = input("Enter the author of the comic:")
         publisher = input("Enter the publisher of the comic:")
         artist = input("Enter the artist of the comic:")

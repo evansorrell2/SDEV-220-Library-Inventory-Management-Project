@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 class item:
     def __init__(self, title, genre, releaseDate):
@@ -17,13 +18,14 @@ class item:
     
     def getReleaseDate(self):
         return self.releaseDate
+    
+
+
 
     
 class book(item):
     def __init__(self, title, genre, releaseDate, author, publisher):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
+        super().__init__(title, genre, releaseDate)
         self.author = author
         self.publisher = publisher
         
@@ -33,13 +35,11 @@ class book(item):
     def getPublisher(self):
         return self.publisher
     
+
+    
 class comic(book):
     def __init__(self, title, genre, releaseDate, author, publisher, artist):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
-        self.author = author
-        self.publisher = publisher
+        super().__init__(title, genre, releaseDate, author, publisher)
         self.artist = artist
         
     def getArtist(self):
@@ -47,9 +47,7 @@ class comic(book):
     
 class movie(item):
     def __init__(self, title, genre, releaseDate, runtime, maturityRating, qualityRating, cast, director, producer):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
+        super().__init__(title, genre, releaseDate)
         self.runtime = runtime
         self.maturityRating = maturityRating
         self.qualityRating = qualityRating
@@ -72,15 +70,7 @@ class movie(item):
     
 class show(movie):
     def __init__(self, title, genre, releaseDate, runtime, maturityRating, qualityRating, cast, director, producer, season, numEpisodes):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
-        self.runtime = runtime
-        self.maturityRating = maturityRating
-        self.qualityRating = qualityRating
-        self.cast = cast
-        self.director = director
-        self.producer = producer
+        super().__init__(title, genre, releaseDate, runtime, maturityRating, qualityRating, cast, director, producer)
         self.season = season
         self.numEpisodes = numEpisodes
         
@@ -91,9 +81,7 @@ class show(movie):
     
 class game(item):
     def __init__(self, title, genre, releaseDate, numPlayers, playingTime, publisher):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
+        super().__init__(title, genre, releaseDate)
         self.numPlayers = numPlayers
         self.playingTime = playingTime
         self.publisher = publisher
@@ -107,12 +95,7 @@ class game(item):
     
 class videoGame(game):
     def __init__(self, title, genre, releaseDate, numPlayers, playingTime, publisher, gameType, platform, esrbRating, qualityRating, cast, developer):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
-        self.numPlayers = numPlayers
-        self.playingTime = playingTime
-        self.publisher = publisher
+        super().__init__(title, genre, releaseDate, numPlayers, playingTime, publisher)
         self.gameType = gameType
         self.platform = platform
         self.esrbRating = esrbRating
@@ -135,12 +118,7 @@ class videoGame(game):
     
 class boardGame(game):
     def __init__(self, title, genre, releaseDate, numPlayers, playingTime, publisher, gameFormat, designer, artist):
-        self.title = title
-        self.genre = genre
-        self.releaseDate = releaseDate
-        self.numPlayers = numPlayers
-        self.playingTime = playingTime
-        self.publisher = publisher
+        super().__init__(title, genre, releaseDate, numPlayers, playingTime, publisher)
         self.gameFormat = gameFormat
         self.designer = designer
         self.artist = artist
