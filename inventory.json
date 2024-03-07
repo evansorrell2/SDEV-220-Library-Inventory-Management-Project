@@ -43,5 +43,14 @@
         "author": "Daisuke Nishio",
         "publisher": "Jump",
         "isbn": "j123456789012"
+    },
+    {
+        "id": 7,
+        "title": "Peanuts",
+        "genre": "comic",
+        "releaseDate": "1950-10-2",
+        "author": "Charles M. Schulz",
+        "publisher": "unknown",
+        "isbn": "1608862607"
     }
 ]

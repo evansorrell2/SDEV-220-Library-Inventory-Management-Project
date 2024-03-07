@@ -63,12 +63,12 @@ class MainWindow:
         return len(isbn) in [10, 13]
     
     def add_book(self):
-        title = simpledialog.askstring("Add Book", "Enter the title of the book:")
-        genre = simpledialog.askstring("Add Book", "Enter the genre of the book:")
-        release_date = simpledialog.askstring("Add Book", "Enter the release date of the book (YYYY-MM-DD):")
-        author = simpledialog.askstring("Add Book", "Enter the author of the book:")
-        publisher = simpledialog.askstring("Add Book", "Enter the publisher of the book:")
-        isbn = simpledialog.askstring("Add Book", "Enter the ISBN of the book:")
+        title = simpledialog.askstring("Add Book", "Enter the title of the book:", parent=self.root)
+        genre = simpledialog.askstring("Add Book", "Enter the genre of the book:", parent=self.root)
+        release_date = simpledialog.askstring("Add Book", "Enter the release date of the book (YYYY-MM-DD):", parent=self.root)
+        author = simpledialog.askstring("Add Book", "Enter the author of the book:", parent=self.root)
+        publisher = simpledialog.askstring("Add Book", "Enter the publisher of the book:", parent=self.root)
+        isbn = simpledialog.askstring("Add Book", "Enter the ISBN of the book:", parent=self.root)
         if not all([title, genre, release_date, author, publisher, isbn]):
             messagebox.showerror("Error", "Please enter all required fields.", parent=self.root)
             return
@@ -103,12 +103,12 @@ class MainWindow:
                 book_id = self.book_list.item(selected_item)['values'][0]
                 book = self.book_manager.find_book(book_id)
                 if book:
-                    new_title = simpledialog.askstring("Update Book", "Enter the new title:")
-                    new_genre = simpledialog.askstring("Update Book", "Enter the new genre:")
-                    new_release_date = simpledialog.askstring("Update Book", "Enter the new release date:")
-                    new_author = simpledialog.askstring("Update Book", "Enter the new author:")
-                    new_publisher = simpledialog.askstring("Update Book", "Enter the new publisher:")
-                    new_isbn = simpledialog.askstring("Update Book", "Enter the new ISBN:")
+                    new_title = simpledialog.askstring("Update Book", "Enter the new title:",parent=self.root)
+                    new_genre = simpledialog.askstring("Update Book", "Enter the new genre:",parent=self.root)
+                    new_release_date = simpledialog.askstring("Update Book", "Enter the new release date:",parent=self.root)
+                    new_author = simpledialog.askstring("Update Book", "Enter the new author:",parent=self.root)
+                    new_publisher = simpledialog.askstring("Update Book", "Enter the new publisher:",parent=self.root)
+                    new_isbn = simpledialog.askstring("Update Book", "Enter the new ISBN:",parent=self.root)
                     if new_title:
                         book.title = new_title
                     if new_genre:
@@ -125,7 +125,7 @@ class MainWindow:
                     self.load_books()
                 
     def search_book(self):
-        search_value = simpledialog.askstring("Search Book", "Enter the title of the book:")
+        search_value = simpledialog.askstring("Search Book", "Enter the title of the book:", parent=self.root)
         if search_value:
             found_books = self.book_manager.find_book(search_value, search_by='title')
             if found_books:
