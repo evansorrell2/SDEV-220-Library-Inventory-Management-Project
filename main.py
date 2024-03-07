@@ -146,6 +146,7 @@ def load():
                 tempComic = comic(tempTitle, tempGenre, tempReleaseDate, tempAuthor, tempPublisher, tempArtist)
                 tempInventory[int(x)] = tempComic #assign the item to its respective spot in tempInventory
             #assign each value to a tempvariable for use in item init
+        inventory = {} #Clears inventory of json string data
         for x in tempInventory:
             inventory[x] = tempInventory[x]
         print("Inventory Loaded.")
