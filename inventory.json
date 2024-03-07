@@ -1,1 +1,47 @@
-{"0": {"py/object": "models.comic", "title": "test3", "genre": "test3", "releaseDate": "1999-09-09", "author": "test3", "publisher": "test3", "artist": "test"}, "1": {"py/object": "models.comic", "title": "test=", "genre": "test=", "releaseDate": "1999-08-08", "author": "test=", "publisher": "test=", "artist": "test="}, "2": {"py/object": "models.book", "title": "test3", "genre": "test3", "releaseDate": "2222-02-02", "author": "test3", "publisher": "test3"}}
+[
+    {
+        "id": 1,
+        "title": "test",
+        "genre": "test",
+        "releaseDate": "1999-9-9",
+        "author": "test",
+        "publisher": "test",
+        "isbn": "test"
+    },
+    {
+        "id": 3,
+        "title": "test3",
+        "genre": "test3",
+        "releaseDate": "1999-2-2",
+        "author": "test3",
+        "publisher": "test3",
+        "isbn": "1234567890123"
+    },
+    {
+        "id": 4,
+        "title": "Harry Potter",
+        "genre": "Fiction",
+        "releaseDate": "2002-11-11",
+        "author": "J.K. Smh",
+        "publisher": "UK ",
+        "isbn": "1112223334441"
+    },
+    {
+        "id": 5,
+        "title": "new",
+        "genre": "new",
+        "releaseDate": "2022-2-2",
+        "author": "new",
+        "publisher": "new",
+        "isbn": "3212232323232"
+    },
+    {
+        "id": 6,
+        "title": "dragonball z",
+        "genre": "comic",
+        "releaseDate": "1989-4-26",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j123456789012"
+    }
+]
