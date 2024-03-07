@@ -1,14 +1,5 @@
 [
     {
-        "id": 1,
-        "title": "test",
-        "genre": "test",
-        "releaseDate": "1999-9-9",
-        "author": "test",
-        "publisher": "test",
-        "isbn": "test"
-    },
-    {
         "id": 3,
         "title": "test3",
         "genre": "test3",

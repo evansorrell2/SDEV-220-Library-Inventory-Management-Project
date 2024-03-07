@@ -5,15 +5,15 @@ from datetime import datetime
 
 class MainWindow:
     def __init__(self, root):
-        self.root = root
-        self.book_manager = Book_Manager()
+        self.root = root 
+        self.book_manager = Book_Manager()  # Create an instance of the Book_Manager
 
         self.root.title("Library Management System")
-        self.root.geometry("800x600+200+100")
-        self.root.resizable(True, True)
+        self.root.geometry("800x600-800+400") # I set the position of the window based on my monitor
+        self.root.resizable(True, True)  # allow the window to be resized
 
         self.last_sort_column = None
-        self.sort_order = False
+        self.sort_order = False  # true for ascending, false for descending
 
         # Create the main frame
         self.main_frame = ttk.Frame(self.root)  # Corrected parent to self.root
@@ -85,8 +85,8 @@ class MainWindow:
         self.book_manager.add_book(book)
         self.load_books()
 
-    def remove_book(self):
-        selected_items = self.book_list.selection()
+    def remove_book(self): # remove the selected book
+        selected_items = self.book_list.selection() 
         if selected_items:
             confirm = messagebox.askyesno("Confirm", "Are you sure you want to remove the selected book(s)?", parent=self.root)
             if confirm:
@@ -134,22 +134,13 @@ class MainWindow:
             else:
                 messagebox.showinfo("Book Not Found", "No book found with that title.", parent=self.root)
 
-
-    # def sort_books(self):
-    #     sorted_books = sorted(self.book_manager.books, key=lambda book: book.title)
-    #     self.book_manager.books = sorted_books
-    #     self.book_manager.save_books()
-    #     self.load_books()
-
-
     def load_books(self):
         for book in self.book_list.get_children():
             self.book_list.delete(book)
-        # sort_books = sorted(self.book_manager.books, key=lambda book: book.title)
         for book in self.book_manager.books:
             self.book_list.insert("", "end", values=(book.id, book.title, book.genre, book.releaseDate, book.author, book.publisher, book.isbn))
 
-    def treeview_sort_column(self,col,reverse): # 
+    def treeview_sort_column(self,col,reverse): # sort the treeview column
         l = [(self.book_list.set(k, col), k) for k in self.book_list.get_children('')
             if self.book_list.parent(k) == '']
         l.sort(reverse=reverse)
@@ -157,4 +148,4 @@ class MainWindow:
             self.book_list.move(k, '', index)
         self.book_list.heading(col, command=lambda: self.treeview_sort_column(col, not reverse))
         self.last_sort_column = col
-        self.sort_order = not reverse
+        self.sort_order = not reverse  # toggle the sort order

@@ -1,6 +1,4 @@
 
-
-###----------|Main Program|----------###
 from main_window import MainWindow
 import tkinter as tk
 
