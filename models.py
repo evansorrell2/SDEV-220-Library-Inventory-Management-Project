@@ -5,19 +5,15 @@ class item:
         self.title = title
         self.genre = genre
         self.releaseDate = releaseDate
-        
     def __str__(self):
         return f"{self.title}({self.genre})({self.releaseDate})"
     
     def getTitle(self):
         return self.title
-    
     def getGenre(self):
         return self.genre
-    
     def getReleaseDate(self):
         return self.releaseDate
-
     
 class book(item):
     def __init__(self, title, genre, releaseDate, author, publisher):
@@ -26,10 +22,11 @@ class book(item):
         self.releaseDate = releaseDate
         self.author = author
         self.publisher = publisher
-        
+    def __str__(self):
+        return f"{self.title}({self.genre})({self.releaseDate})({self.getAuthor()})({self.getPublisher()})"
+    
     def getAuthor(self):
         return self.author
-    
     def getPublisher(self):
         return self.publisher
     
@@ -41,7 +38,9 @@ class comic(book):
         self.author = author
         self.publisher = publisher
         self.artist = artist
-        
+    def __str__(self):
+        return f"{self.title}({self.genre})({self.releaseDate})({self.getAuthor()})({self.getPublisher()})({self.getArtist()})"
+    
     def getArtist(self):
         return self.artist
     
