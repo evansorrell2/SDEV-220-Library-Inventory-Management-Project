@@ -94,22 +94,27 @@ def load():
                 tempTitle, tempGenre, tempReleaseDate, tempAuthor, tempPublisher = "", "", "", "", "" #Initialize attributes of a book
                 #this loop pulls all of the values of the item out of the raw inventory and stores them in temporary variables
                 for y in inventory[x]: #This loop assigns all of the values of the dictionary we are looking at to the temp attributes above
-                    if inventory[x] == "py/object":
+                    if y == "py/object":
                         continue
-                    elif inventory[x] == "title":
+                    elif y == "title":
+                        print(inventory[x]["title"])
                         tempTitle = inventory[x][y]
                         continue
-                    elif inventory[x] == "genre":
+                    elif y == "genre":
                         tempGenre = inventory[x][y]
                         continue
-                    elif inventory[x] == "releaseDate":
+                    elif y == "releaseDate":
                         tempReleaseDate = inventory[x][y]
                         continue
-                    elif inventory[x] == "author":
+                    elif y == "author":
                         tempAuthor = inventory[x][y]
                         continue
-                    elif inventory[x] == "publisher":
+                    elif y == "publisher":
                         tempPublisher = inventory[x][y]
+                    elif y == "artist":
+                        tempArtist = inventory[x][y]
+                    else:
+                        print("Error loading item")
                 tempBook = book(tempTitle, tempGenre, tempReleaseDate, tempAuthor, tempPublisher)
                 tempInventory[int(x)] = tempBook #assign the item to its respective spot in tempInventory
             elif inventory[x]['py/object'] == "__main__.comic":
@@ -117,24 +122,27 @@ def load():
                 tempTitle, tempGenre, tempReleaseDate, tempAuthor, tempPublisher, tempArtist = "", "", "", "", "", "" #Initialize attributes of a book
                 #this loop pulls all of the values of the item out of the raw inventory and stores them in temporary variables
                 for y in inventory[x]: #This loop assigns all of the values of the dictionary we are looking at to the temp attributes above
-                    if inventory[x] == "py/object":
+                    if y == "py/object":
                         continue
-                    elif inventory[x] == "title":
+                    elif y == "title":
+                        print(inventory[x]["title"])
                         tempTitle = inventory[x][y]
                         continue
-                    elif inventory[x] == "genre":
+                    elif y == "genre":
                         tempGenre = inventory[x][y]
                         continue
-                    elif inventory[x] == "releaseDate":
+                    elif y == "releaseDate":
                         tempReleaseDate = inventory[x][y]
                         continue
-                    elif inventory[x] == "author":
+                    elif y == "author":
                         tempAuthor = inventory[x][y]
                         continue
-                    elif inventory[x] == "publisher":
+                    elif y == "publisher":
                         tempPublisher = inventory[x][y]
-                    elif inventory[x] == "artist":
+                    elif y == "artist":
                         tempArtist = inventory[x][y]
+                    else:
+                        print("Error loading item")
                 tempComic = comic(tempTitle, tempGenre, tempReleaseDate, tempAuthor, tempPublisher, tempArtist)
                 tempInventory[int(x)] = tempComic #assign the item to its respective spot in tempInventory
             #assign each value to a tempvariable for use in item init
