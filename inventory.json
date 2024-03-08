@@ -1,47 +1,119 @@
 [
     {
+        "id": 1,
+        "title": "Dragonball Z Vol. 1",
+        "genre": "Comic",
+        "releaseDate": "1990-01-05",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j825961051464"
+    },
+    {
+        "id": 2,
+        "title": "Dragonball Z Vol. 2",
+        "genre": "Comic",
+        "releaseDate": "1990-04-24",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j008808208434"
+    },
+    {
         "id": 3,
-        "title": "test3",
-        "genre": "test3",
-        "releaseDate": "1999-2-2",
-        "author": "test3",
-        "publisher": "test3",
-        "isbn": "1234567890123"
+        "title": "Dragonball Z Vol. 3",
+        "genre": "Comic",
+        "releaseDate": "1990-02-15",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j528092935752"
     },
     {
         "id": 4,
-        "title": "Harry Potter",
-        "genre": "Fiction",
-        "releaseDate": "2002-11-11",
-        "author": "J.K. Smh",
-        "publisher": "UK ",
-        "isbn": "1112223334441"
+        "title": "Dragonball Z Vol. 4",
+        "genre": "Comic",
+        "releaseDate": "1990-03-12",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j055028009549"
     },
     {
         "id": 5,
-        "title": "new",
-        "genre": "new",
-        "releaseDate": "2022-2-2",
-        "author": "new",
-        "publisher": "new",
-        "isbn": "3212232323232"
+        "title": "Dragonball Z Vol. 5",
+        "genre": "Comic",
+        "releaseDate": "1989-08-03",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j931177432656"
     },
     {
         "id": 6,
-        "title": "dragonball z",
-        "genre": "comic",
-        "releaseDate": "1989-4-26",
+        "title": "Dragonball Z Vol. 6",
+        "genre": "Comic",
+        "releaseDate": "1989-10-09",
         "author": "Daisuke Nishio",
         "publisher": "Jump",
-        "isbn": "j123456789012"
+        "isbn": "j111378167720"
     },
     {
         "id": 7,
-        "title": "Peanuts",
-        "genre": "comic",
-        "releaseDate": "1950-10-2",
-        "author": "Charles M. Schulz",
-        "publisher": "unknown",
-        "isbn": "1608862607"
+        "title": "Dragonball Z Vol. 7",
+        "genre": "Comic",
+        "releaseDate": "1989-12-13",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j492836952311"
+    },
+    {
+        "id": 8,
+        "title": "Dragonball Z Vol. 8",
+        "genre": "Comic",
+        "releaseDate": "1989-10-31",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j834775080941"
+    },
+    {
+        "id": 9,
+        "title": "Dragonball Z Vol. 9",
+        "genre": "Comic",
+        "releaseDate": "1989-07-14",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j545701262265"
+    },
+    {
+        "id": 10,
+        "title": "Dragonball Z Vol. 10",
+        "genre": "Comic",
+        "releaseDate": "1989-07-21",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j953430488599"
+    },
+    {
+        "id": 11,
+        "title": "Dragonball Z Vol. 11",
+        "genre": "Comic",
+        "releaseDate": "1989-10-26",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j532657960405"
+    },
+    {
+        "id": 12,
+        "title": "Dragonball Z Vol. 12",
+        "genre": "Comic",
+        "releaseDate": "1989-08-05",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j728638301497"
+    },
+    {
+        "id": 13,
+        "title": "Dragonball Z Vol. 13",
+        "genre": "Comic",
+        "releaseDate": "1989-09-06",
+        "author": "Daisuke Nishio",
+        "publisher": "Jump",
+        "isbn": "j801167058581"
     }
 ]
