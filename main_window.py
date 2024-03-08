@@ -69,6 +69,8 @@ class MainWindow:
         author = simpledialog.askstring("Add Book", "Enter the author of the book:", parent=self.root)
         publisher = simpledialog.askstring("Add Book", "Enter the publisher of the book:", parent=self.root)
         isbn = simpledialog.askstring("Add Book", "Enter the ISBN of the book:", parent=self.root)
+
+        # Validate the input
         if not all([title, genre, release_date, author, publisher, isbn]):
             messagebox.showerror("Error", "Please enter all required fields.", parent=self.root)
             return
@@ -143,9 +145,14 @@ class MainWindow:
     def treeview_sort_column(self,col,reverse): # sort the treeview column
         l = [(self.book_list.set(k, col), k) for k in self.book_list.get_children('')
             if self.book_list.parent(k) == '']
-        l.sort(reverse=reverse)
+        try:
+            l.sort(key = lambda t:int(t[0]),reverse=reverse) # sort by int is for ID column
+        except ValueError:
+            l.sort(reverse=reverse)
+
         for index, (val, k) in enumerate(l):
             self.book_list.move(k, '', index)
+
         self.book_list.heading(col, command=lambda: self.treeview_sort_column(col, not reverse))
         self.last_sort_column = col
         self.sort_order = not reverse  # toggle the sort order
