@@ -1,0 +1,1 @@
+{"0": {"py/object": "__main__.comic", "title": "Star Wars: Legacy", "genre": "Science Fantasy", "releaseDate": "06/07/06", "author": "John Ostrander", "publisher": "Dark Horse Comics", "artist": "Jan Duursema"}}
