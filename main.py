@@ -30,6 +30,19 @@ def save():
     file.write(json_string)
     file.close()
 
+def createItemSafe():
+    #checks if variables within createItem are not going to break the strftime
+    day = itemDayTextBox.get()
+    month = itemMonthTextBox.get()
+    year = itemYearTextBox.get()
+    if not (day.isnumeric()):
+        itemDayTextBox.insert(0, 'This field must be numeric, from 1-31')
+    if not (month.isnumeric()):
+        itemMonthTextBox.insert(0, 'This field must be numeric, from 1-12')
+    if not (year.isnumeric()):
+        itemYearTextBox.insert(0, 'This field must be numeric)
+    createItem()
+
 def createItem(): 
     date_format = '%Y-%m-%d'
     itemType = input("Enter the type of item you wish to enter:")
@@ -157,6 +170,25 @@ def load():
         inventory = {} #initializes the inventory
         print("Fresh Inventory initialized")
         return inventory
+
+def display(): #returns a list of every item within inventory
+    display = []
+    for x in inventory:
+        display.append(inventory[x].__str__())
+    return display
+
+def filteredDisplay(filteredInventory): #this version of display takes a dictionary instead of defaulting to inventory
+    display = []
+    for x in filteredInventory:
+        display.append(filteredInventory[x].__str__())
+    return display
+    
+def search(filterInput):
+    for x in inventory:
+        if filterInput in inventory[x].__str__():
+            #add item to filtered list
+            filteredInven[x] = inventory[x].__str__()
+    return filteredInven
 #id1 = book("The Hobbit", "High Fantasy", (datetime.datetime(1937, 9, 21)).strftime("%x"), "J. R. R. Tolkien", "George Allen & Unwin")
 
 #inventory[1] = jsonpickle.encode(id1)
