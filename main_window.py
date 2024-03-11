@@ -64,11 +64,34 @@ class MainWindow:
     
     def add_book(self):
         title = simpledialog.askstring("Add Book", "Enter the title of the book:", parent=self.root)
+        if title is None or title == "": return
         genre = simpledialog.askstring("Add Book", "Enter the genre of the book:", parent=self.root)
+        if genre is None: 
+            return
+        elif genre == "": 
+            genre = "Unknown"
         release_date = simpledialog.askstring("Add Book", "Enter the release date of the book (YYYY-MM-DD):", parent=self.root)
+        if release_date is None: 
+            return
+        if not self.is_valid_date(release_date): 
+            messagebox.showerror("Error", "Invalid date format. Please enter the date in YYYY-MM-DD format.", parent=self.root)        
+            return
         author = simpledialog.askstring("Add Book", "Enter the author of the book:", parent=self.root)
+        if author is None: 
+            return
+        elif author == "": 
+            author = "Unknown"
         publisher = simpledialog.askstring("Add Book", "Enter the publisher of the book:", parent=self.root)
+        if publisher is None: 
+            return
+        elif publisher == "":
+            publisher = "Unknown"
         isbn = simpledialog.askstring("Add Book", "Enter the ISBN of the book:", parent=self.root)
+        if isbn is None:
+            return
+        if not self.is_valid_isbn(isbn):
+            messagebox.showerror("Error", "Invalid ISBN. ISBN should be 10 or 13 characters long.", parent=self.root)
+            return
 
         # Validate the input
         if not all([title, genre, release_date, author, publisher, isbn]):
@@ -106,14 +129,32 @@ class MainWindow:
                 book = self.book_manager.find_book(book_id)
                 if book:
                     new_title = simpledialog.askstring("Update Book", "Enter the new title:",parent=self.root)
+                    if new_title is None:
+                        return
                     new_genre = simpledialog.askstring("Update Book", "Enter the new genre:",parent=self.root)
+                    if new_genre is None:
+                        return
+                    if new_genre == "":
+                        new_genre = "Unknown"
                     new_release_date = simpledialog.askstring("Update Book", "Enter the new release date:",parent=self.root)
+                    if new_release_date is None:
+                        return
                     if not self.is_valid_date(new_release_date):
                         messagebox.showerror("Error", "Invalid date format. Please enter the date in YYYY-MM-DD format.", parent=self.root)
                         return
                     new_author = simpledialog.askstring("Update Book", "Enter the new author:",parent=self.root)
+                    if new_author is None:
+                        return
+                    if new_author == "":
+                        new_author = "Unknown"
                     new_publisher = simpledialog.askstring("Update Book", "Enter the new publisher:",parent=self.root)
+                    if new_publisher is None:
+                        return
+                    if new_publisher == "":
+                        new_publisher = "Unknown"
                     new_isbn = simpledialog.askstring("Update Book", "Enter the new ISBN:",parent=self.root)
+                    if new_isbn is None:
+                        return
                     if not self.is_valid_isbn(new_isbn):
                         messagebox.showerror("Error", "Invalid ISBN. ISBN should be 10 or 13 characters long.", parent=self.root)
                         return
