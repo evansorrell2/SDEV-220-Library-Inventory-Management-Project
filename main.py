@@ -202,20 +202,20 @@ def load():
                     elif y == "releaseDate":
                         tempReleaseDate = inventory[x][y]
                         continue
-                    elif y == "tempNumPlayers":
-                        tempAuthor = inventory[x][y]
+                    elif y == "numPlayers":
+                        tempNumPlayers = inventory[x][y]
                         continue
-                    elif y == "tempPlayingTime":
-                        tempAuthor = inventory[x][y]
+                    elif y == "playingTime":
+                        tempPlayingTime = inventory[x][y]
                         continue
-                    elif y == "tempPublisher":
-                        tempAuthor = inventory[x][y]
+                    elif y == "publisher":
+                        tempPublisher = inventory[x][y]
                         continue
-                    elif y == "tempGameFormat":
-                        tempAuthor = inventory[x][y]
+                    elif y == "gameFormat":
+                        tempGameFormat = inventory[x][y]
                         continue
-                    elif y == "tempDesigner":
-                        tempAuthor = inventory[x][y]
+                    elif y == "designer":
+                        tempDesigner = inventory[x][y]
                         continue
                     elif y == "artist":
                         tempArtist = inventory[x][y]
