@@ -241,15 +241,10 @@ def load():
 
 def delete():
     global inventory
-    tempInventory = inventory
-    inventory = {}
-    count = 0
-    for x in tempInventory:
-        inventory[count] = tempInventory[x]
     obj = inventoryViewBox.curselection()
-    print(obj)
-    for x in obj:
-        inventory.pop(int(x))
+    keys_to_delete = [list(inventory.keys())[int(x)] for x in obj]
+    for key in keys_to_delete:
+        del inventory[key]
     save()
     show()
     
