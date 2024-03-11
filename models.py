@@ -48,7 +48,7 @@ class Book_Manager:
                 break
         if book_to_remove: # if a book was found
             self.books.remove(book_to_remove) # remove the book
-            self.save_books() 
+            self.save_books()
         else:
             print("Book not found.")
 

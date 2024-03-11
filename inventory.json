@@ -99,15 +99,6 @@
         "isbn": "j728638301497"
     },
     {
-        "id": 13,
-        "title": "test",
-        "genre": "Unknown",
-        "releaseDate": "2222-2-2",
-        "author": "Unknown",
-        "publisher": "Unknown",
-        "isbn": "1234123443211"
-    },
-    {
         "id": 14,
         "title": "test1",
         "genre": "Unknown",
