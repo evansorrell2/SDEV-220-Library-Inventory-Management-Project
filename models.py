@@ -28,7 +28,7 @@ class Book_Manager:
         except IOError as e:
             print(f"Error creating new inventory: {e}")
 
-    
+
     def add_book(self, book):
         if self.books:
             max_id = max(book.id for book in self.books) # get the maximum ID in the list
@@ -53,11 +53,9 @@ class Book_Manager:
             print("Book not found.")
 
     def find_book(self, search_value, search_by='id'):
-        books=[]
         for book in self.books:
             if str(getattr(book, search_by, '')).lower() == str(search_value).lower(): # use getattr to get the value of the search_by attribute
-                books.append(book)
-        return books
+                return book
 
     def save_books(self):
         with open(self.file_path, 'w', encoding='utf-8') as file: # I set encoding to utf-8 to avoid encoding errors
@@ -73,4 +71,17 @@ class Book_Manager:
             print("File not found.") 
         except json.JSONDecodeError:
             print("Invalid JSON data in inventory file.")
-
+    
+    def update_book(self, new_book):
+        book = self.find_book(new_book.id)
+        if book:
+            book.title = new_book.title
+            book.genre = new_book.genre
+            book.releaseDate = new_book.releaseDate
+            book.author = new_book.author
+            book.publisher = new_book.publisher
+            book.isbn = new_book.isbn
+            self.save_books()
+        else:
+            print("Book not found.")
+        

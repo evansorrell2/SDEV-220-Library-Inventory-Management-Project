@@ -108,22 +108,17 @@ class MainWindow:
                     new_title = simpledialog.askstring("Update Book", "Enter the new title:",parent=self.root)
                     new_genre = simpledialog.askstring("Update Book", "Enter the new genre:",parent=self.root)
                     new_release_date = simpledialog.askstring("Update Book", "Enter the new release date:",parent=self.root)
+                    if not self.is_valid_date(new_release_date):
+                        messagebox.showerror("Error", "Invalid date format. Please enter the date in YYYY-MM-DD format.", parent=self.root)
+                        return
                     new_author = simpledialog.askstring("Update Book", "Enter the new author:",parent=self.root)
                     new_publisher = simpledialog.askstring("Update Book", "Enter the new publisher:",parent=self.root)
                     new_isbn = simpledialog.askstring("Update Book", "Enter the new ISBN:",parent=self.root)
-                    if new_title:
-                        book.title = new_title
-                    if new_genre:
-                        book.genre = new_genre
-                    if new_release_date:
-                        book.releaseDate = new_release_date
-                    if new_author:
-                        book.author = new_author
-                    if new_publisher:
-                        book.publisher = new_publisher
-                    if new_isbn:
-                        book.isbn = new_isbn
-                    self.book_manager.save_books()
+                    if not self.is_valid_isbn(new_isbn):
+                        messagebox.showerror("Error", "Invalid ISBN. ISBN should be 10 or 13 characters long.", parent=self.root)
+                        return
+                    new_book = Book(new_title, new_genre, new_release_date, new_author, new_publisher, new_isbn, book_id)
+                    self.book_manager.update_book(new_book)
                     self.load_books()
                 
     def search_book(self):

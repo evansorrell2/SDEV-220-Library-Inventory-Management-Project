@@ -63,15 +63,6 @@
         "isbn": "j492836952311"
     },
     {
-        "id": 8,
-        "title": "Dragonball Z Vol. 8",
-        "genre": "Comic",
-        "releaseDate": "1989-10-31",
-        "author": "Daisuke Nishio",
-        "publisher": "Jump",
-        "isbn": "j834775080941"
-    },
-    {
         "id": 9,
         "title": "Dragonball Z Vol. 9",
         "genre": "Comic",
@@ -106,5 +97,14 @@
         "author": "Daisuke Nishio",
         "publisher": "Jump",
         "isbn": "j728638301497"
+    },
+    {
+        "id": 13,
+        "title": "test2",
+        "genre": "test2",
+        "releaseDate": "1999-9-9",
+        "author": "test2",
+        "publisher": "test2",
+        "isbn": "1231231231231"
     }
 ]
